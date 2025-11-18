@@ -48,5 +48,14 @@ namespace Core
             WorldPosition = worldPosition;
         }
     }
+    public class PathConstructedEvent
+    {
+        public List<Vector3> Waypoints { get; }
+
+        public PathConstructedEvent(List<Vector3> waypoints)
+        {
+            Waypoints = waypoints;
+        }
+    }
 
 }
