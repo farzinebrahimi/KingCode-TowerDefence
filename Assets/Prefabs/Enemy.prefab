@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab81f2ce30ba8dd428f4f9cf572d2850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.EnemyController
-  speed: 10
+  _waypoints: []
+  _currentIndex: 0
+  speed: 2
 --- !u!1 &8038200263490429683
 GameObject:
   m_ObjectHideFlags: 0
