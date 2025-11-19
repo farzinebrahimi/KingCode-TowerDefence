@@ -4,18 +4,20 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Tower
   - PathStart
+  - TowerBase
+  - TowerDetection
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
-  - 
-  - 
-  - 
+  - TowerBase
+  - TowerDetection
+  - Ground
   - 
   - 
   - 

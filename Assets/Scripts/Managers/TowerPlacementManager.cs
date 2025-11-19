@@ -32,7 +32,6 @@ namespace Managers
 
         private void OnMouseClicked(MouseClickEvent e)
         {
-            Debug.Log("Mouse clicked");
             Vector3 mousePosition = e.WorldPosition; 
             Vector3Int tilePosition = buildableTile.WorldToCell(mousePosition);
 
@@ -46,9 +45,9 @@ namespace Managers
             }
 
             Vector3 cellCenter = buildableTile.GetCellCenterWorld(tilePosition);
-            Collider2D overlap = Physics2D.OverlapPoint(cellCenter);
+            Collider2D overlap = Physics2D.OverlapPoint(cellCenter, LayerMask.GetMask("TowerBase"));
 
-            if (overlap != null && overlap.CompareTag("Tower"))
+            if (overlap != null)
             {
                 Debug.LogWarning("Tower already placed here");
                 return;

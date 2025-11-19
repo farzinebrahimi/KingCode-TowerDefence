@@ -2,14 +2,15 @@
 using Core;
 using Enemies;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
     public class EnemyManager : MonoBehaviour
     {
-        [SerializeField] private EnemyController enemyPrefab;
-        [SerializeField] private Transform enemyContainer;
-        [SerializeField] private int prewarmCount = 10;
+         [SerializeField] private EnemyController _enemyPrefab;
+         [SerializeField] private Transform _enemyContainer;
+         [SerializeField] private int _prewarmCount = 10;
         
 
         [SerializeField]
@@ -21,7 +22,7 @@ namespace Managers
         
         private void Awake()
         {
-            _enemyPool = new ObjectPool<EnemyController>(enemyPrefab, prewarmCount, enemyContainer);
+            _enemyPool = new ObjectPool<EnemyController>(_enemyPrefab, _prewarmCount, _enemyContainer);
         }
         
         private void OnEnable()
@@ -57,7 +58,7 @@ namespace Managers
                 return;
             }
             
-            var enemy = _enemyPool.GetFromPull(_waypoints[0], Quaternion.identity);
+            var enemy = _enemyPool.Get(_waypoints[0], Quaternion.identity);
             
             if (enemy != null)
             {

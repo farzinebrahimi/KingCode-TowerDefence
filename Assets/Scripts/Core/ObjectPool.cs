@@ -1,61 +1,50 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core
 {
-    public class ObjectPool<T> where T : MonoBehaviour
+    public class ObjectPool<T> where T : Component
     {
-        private readonly Queue<T>  _pool = new();
-        private readonly T _prefab;
-        private readonly Transform _parent;
-        private readonly bool _autoExpand;
+        private readonly Queue<T> _poolQueue = new();
+        private readonly Func<T> _createFunc;
+        private readonly Transform _container;
 
-        public ObjectPool(T prefab, int initialCount, Transform parent = null, bool autoExpand = true)
+        public ObjectPool(T prefab, int initialCount, Transform container)
         {
-            _prefab = prefab;
-            _parent = parent;
-            _autoExpand = autoExpand;
-            PreSpawn(initialCount);
-        }
-
-        private void PreSpawn(int count)
-        {
-            for (int i = 0; i < count; i++)
+            _container = container;
+            _createFunc = () => UnityEngine.Object.Instantiate(prefab, container);
+        
+            for (int i = 0; i < initialCount; i++)
             {
-                T obj = CreateInstance();
-                _pool.Enqueue(obj);
+                var obj = _createFunc();
+                obj.gameObject.SetActive(false);
+                _poolQueue.Enqueue(obj);
             }
         }
-
-        private T CreateInstance()
+    
+        public T Get(Vector3 position, Quaternion rotation)
         {
-            var instance = GameObject.Instantiate(_prefab, _parent);
-            return instance;
+            var obj = Get();
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            return obj;
         }
 
-        public T GetFromPull(Vector3 position, Quaternion rotation)
+        public T Get()
         {
-            if (_pool.Count == 0)
-            {
-                if (_autoExpand)
-                {
-                    var newObj = CreateInstance();
-                    newObj.transform.position = position;
-                    return newObj;
-                }
+            if (_poolQueue.Count == 0)
+                return _createFunc();
 
-                return null;
-            }
-            T obj = _pool.Dequeue();
-            obj.transform.SetPositionAndRotation(position, rotation);
+            var obj = _poolQueue.Dequeue();
+            obj.gameObject.SetActive(true);
             return obj;
         }
 
         public void ReturnToPool(T obj)
         {
             obj.gameObject.SetActive(false);
-            _pool.Enqueue(obj);
+            _poolQueue.Enqueue(obj);
         }
     }
 }

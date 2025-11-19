@@ -1,18 +1,25 @@
-﻿using System;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using UnityEngine;
 
-namespace Towers
+namespace Castle
 {
     public class CastleCollisionHandler : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            
-            IDamageable damageable = other.GetComponent<IDamageable>();
-            if (damageable != null)
+
+            if (other.CompareTag("Enemy"))
             {
-                damageable.TakeDamage(10.0f);
+                IDamageable selfDmg = GetComponent<IDamageable>();
+                if (selfDmg != null)
+                {
+                    selfDmg.TakeDamage(50.0f);
+                } 
+                IDamageable damageable = other.GetComponent<IDamageable>();
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(999f);
+                }
             }
         }
     }

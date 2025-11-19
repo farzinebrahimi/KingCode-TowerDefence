@@ -1,15 +1,12 @@
-﻿using System;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using UnityEngine;
 
-namespace Castle
+namespace Enemies
 {
-    public class CastleHealth: MonoBehaviour , IDamageable
+    public class EnemyHealth : MonoBehaviour, IDamageable
     {
-        [SerializeField]
-        private float _maxHealth;
-        [SerializeField]
-        private float _currentHealth;
+        [SerializeField] private float _maxHealth;
+        [SerializeField] private float _currentHealth;
 
         private void Start()
         {
@@ -26,7 +23,7 @@ namespace Castle
 
         private void Die()
         {
-            Destroy(gameObject);
+            Destroy(gameObject,0.1f);
         }
     }
 }
