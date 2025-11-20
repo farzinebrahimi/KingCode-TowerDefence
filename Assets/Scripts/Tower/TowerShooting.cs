@@ -1,5 +1,6 @@
 using Core;
 using Core.Interfaces;
+using Data;
 using UnityEngine;
 
 namespace Tower
@@ -8,21 +9,25 @@ namespace Tower
     {
         private IProjectileFactory _projectileFactory;
         [SerializeField]
-        private Transform _shootPoint;
+        private Transform shootPoint;
         [SerializeField]
-        private float _fireRate;
+        private float fireRate;
         private Transform _currentTarget;
         
         [Header("Debug Info - Runtime Only")]
          [SerializeField]
-        private float _lastShootTime;
-        
+        private float lastShootTime;
+
+        private float _damage;
         private int _myInstanceID;
+
+        private TowerData _towerData;
         
         private void Awake()
         {
             _projectileFactory = ProjectilePoolFactory.Instance;
             _myInstanceID = transform.GetInstanceID();
+            
         }
 
         private void OnEnable()
@@ -41,21 +46,28 @@ namespace Tower
         {
             if (_currentTarget == null) return;
 
-            if (Time.time - _lastShootTime >= 1f / _fireRate)
+            if (Time.time - lastShootTime >= 1f / fireRate)
             {
                 Shoot();
-                _lastShootTime = Time.time;
+                lastShootTime = Time.time;
             }
         }
 
         public void Shoot()
         {
             var projectile = _projectileFactory.Get(transform);
-            projectile.transform.position = _shootPoint.position;
+            projectile.transform.position = shootPoint.position;
 
-            Vector2 dir = (_currentTarget.position - _shootPoint.position).normalized;
+            Vector2 dir = (_currentTarget.position - shootPoint.position).normalized;
             projectile.Launch(dir, 10f);
         }
+
+        public void SetState(float damage, float newFireRate)
+        {
+            _damage = damage;
+            fireRate = newFireRate;
+        }
+        
 
         private void OnTargetLocked(GetTargetEvent e)
         {

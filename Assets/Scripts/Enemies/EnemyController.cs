@@ -7,33 +7,33 @@ namespace Enemies
     public class EnemyController : MonoBehaviour
     {
         [SerializeField]
-        private List<Vector3> _waypoints;
+        private List<Vector3> waypoints;
         [SerializeField]
-        private int _currentIndex;
+        private int currentIndex;
         
         private Action _onDeathReturn;
 
         public float speed = 2f;
 
-        public void Init(List<Vector3> waypoints, System.Action returnAction)
+        public void Init(List<Vector3> waypoints, Action returnAction)
         {
-            _waypoints = waypoints;
-            _currentIndex = 0;
+            this.waypoints = waypoints;
+            currentIndex = 0;
             _onDeathReturn = returnAction;
             gameObject.SetActive(true);
         }
 
         private void Update()
         {
-            if (_waypoints == null || _waypoints.Count == 0) return;
+            if (waypoints == null || waypoints.Count == 0) return;
 
-            transform.position = Vector3.MoveTowards(transform.position, _waypoints[_currentIndex], speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, waypoints[currentIndex], speed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, _waypoints[_currentIndex]) < 0.1f)
+            if (Vector3.Distance(transform.position, waypoints[currentIndex]) < 0.1f)
             {
-                _currentIndex++;
+                currentIndex++;
 
-                if (_currentIndex >= _waypoints.Count)
+                if (currentIndex >= waypoints.Count)
                 {
                     _onDeathReturn?.Invoke(); 
                 }

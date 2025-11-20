@@ -5,19 +5,19 @@ namespace Enemies
 {
     public class EnemyHealth : MonoBehaviour, IDamageable
     {
-        [SerializeField] private float _maxHealth;
-        [SerializeField] private float _currentHealth;
+        [SerializeField] private float maxHealth;
+        [SerializeField] private float currentHealth;
 
         private void Start()
         {
-            _currentHealth = _maxHealth;
+            currentHealth = maxHealth;
         }
 
         public void TakeDamage(float damage)
         {
-            _currentHealth -= damage;
-            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
-            if (_currentHealth <= 0)
+            currentHealth -= damage;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            if (currentHealth <= 0)
                 Die();
         }
 

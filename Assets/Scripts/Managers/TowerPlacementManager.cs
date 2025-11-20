@@ -1,5 +1,5 @@
-using System;
 using Core;
+using Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -12,6 +12,9 @@ namespace Managers
 
         [Header("Tower Prefabs")] [SerializeField]
         private GameObject towerPrefab;
+        
+        [SerializeField]
+        private TowerData _towerData;
 
         private Camera _mainCamera;
 
@@ -37,6 +40,7 @@ namespace Managers
 
             bool isBuildable = buildableTile.GetTile(tilePosition) != null;
             bool isPath = pathTile.GetTile(tilePosition) != null;
+            
 
             if (!isBuildable || isPath)
             {
@@ -55,6 +59,12 @@ namespace Managers
 
             GameObject tower = Instantiate(towerPrefab, cellCenter, Quaternion.identity);
             EventBus.Publish(new TowerPlacedEvent(tower.transform));
+            foreach (var lvl in _towerData.Levels)
+            {   
+                EventBus.Publish(new MoneyChangedEvent(lvl.upgradeCost));    
+                
+            }
+            
             
         }
     }

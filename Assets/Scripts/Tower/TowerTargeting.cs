@@ -10,13 +10,13 @@ namespace Tower
     public class TowerTargeting : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private Transform _parentTower;
+        [SerializeField] private Transform parentTower;
     
-        [Header("Settings")] [SerializeField] private float _detectionRadius = 3f;
-        [SerializeField] private LayerMask _enemyLayer;
+        [Header("Settings")] [SerializeField] private float detectionRadius = 3f;
+        [SerializeField] private LayerMask enemyLayer;
         private readonly List<EnemyController> _enemiesInRange = new();
         [SerializeField]
-        private EnemyController _currentTarget;
+        private EnemyController currentTarget;
         [SerializeField] private CircleCollider2D _collider;
         
         private int _myInstanceID;
@@ -24,25 +24,32 @@ namespace Tower
         private void Awake()
         {
             _collider.isTrigger = true;
-            _collider.radius = _detectionRadius;
+            _collider.radius = detectionRadius;
             
-            _myInstanceID = _parentTower.GetInstanceID();
+            _myInstanceID = parentTower.GetInstanceID();
         }
 
         private void Update()
         {
             _enemiesInRange.RemoveAll(e => e == null);
 
-            if (_currentTarget == null || !_enemiesInRange.Contains(_currentTarget))
+            if (currentTarget == null || !_enemiesInRange.Contains(currentTarget))
             {
                 SelectClosestTarget();
             }
         }
         
+        public void SetDetectionRadius(float radius)
+        {
+            detectionRadius = radius;
+            
+            if(_collider != null) _collider.radius = radius;
+        }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if ((_enemyLayer.value & (1 << other.gameObject.layer)) != 0)
+            if ((enemyLayer.value & (1 << other.gameObject.layer)) != 0)
             {
                 var enemy = other.GetComponent<EnemyController>();
                 if (enemy != null) _enemiesInRange.Add(enemy);
@@ -56,9 +63,9 @@ namespace Tower
             {
                 _enemiesInRange.Remove(enemy);
 
-                if (_currentTarget == enemy)
+                if (currentTarget == enemy)
                 {
-                    _currentTarget = null;
+                    currentTarget = null;
                     EventBus.Publish(new TargetLostEvent(_myInstanceID));
                     SelectClosestTarget();
                 }
@@ -69,7 +76,7 @@ namespace Tower
         {
             if (_enemiesInRange.Count == 0)
             {
-                _currentTarget = null;
+                currentTarget = null;
                 return;
             }
             EnemyController closest = null;
@@ -86,9 +93,9 @@ namespace Tower
                     closest = enemy;
                 }
             }
-            if (closest != null && closest != _currentTarget)
+            if (closest != null && closest != currentTarget)
             {
-                _currentTarget = closest;
+                currentTarget = closest;
                 GetCurrentTarget();
 
                 EventBus.Publish(new GetTargetEvent(_myInstanceID, closest.transform));
@@ -96,6 +103,6 @@ namespace Tower
         }
 
         public Transform GetCurrentTarget() =>
-            _currentTarget != null ? _currentTarget.transform : null;
+            currentTarget != null ? currentTarget.transform : null;
     }
 }

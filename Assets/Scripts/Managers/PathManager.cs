@@ -9,7 +9,7 @@ namespace Managers
     {
         [Header("Tilemap Settings")]
         [SerializeField] private Tilemap pathTilemap;
-         private List<Vector3> tilePositions = new List<Vector3>();
+         private List<Vector3> tilePositions = new();
         [SerializeField] private bool debugMode = true;
 
         private void Start()

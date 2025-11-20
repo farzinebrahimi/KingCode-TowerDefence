@@ -36,6 +36,8 @@ namespace Core
 
     //event type
 
+    #region Tower Placement Events
+
     public readonly struct TowerPlacedEvent
     {
         public readonly Transform Tower;
@@ -53,7 +55,11 @@ namespace Core
         public List<Vector3> Waypoints { get; }
         public PathConstructedEvent(List<Vector3> waypoints) => Waypoints = waypoints;
     }
-    
+
+    #endregion
+
+    #region Tower Target Events
+
     public struct GetTargetEvent
     {
         public int TowerID;
@@ -72,6 +78,30 @@ namespace Core
         public TargetLostEvent(int towerID)
         {
             TowerID = towerID;
+        }
+    }
+
+    #endregion
+
+    #region Currency Events
+
+    public readonly struct MoneyChangedEvent
+    {
+        public readonly int Money;
+        public MoneyChangedEvent(int money) => Money = money;
+    }
+
+    #endregion
+    
+    public struct TowerUpgradedEvent
+    {
+        public GameObject Tower;
+        public int NewLevel;
+
+        public TowerUpgradedEvent(GameObject tower, int newLevel)
+        {
+            Tower = tower;
+            NewLevel = newLevel;
         }
     }
 

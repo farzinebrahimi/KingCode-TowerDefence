@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab81f2ce30ba8dd428f4f9cf572d2850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.EnemyController
-  _waypoints: []
-  _currentIndex: 0
+  waypoints: []
+  currentIndex: 0
   speed: 1.2
 --- !u!114 &-137205805038841834
 MonoBehaviour:
@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d167f3dce644efae1aa410165b9ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.EnemyHealth
-  _maxHealth: 100
-  _currentHealth: 0
+  maxHealth: 100
+  currentHealth: 0
 --- !u!58 &3852564935080621626
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ namespace Managers
         [SerializeField]
         private bool _isPathReady = false;
         
-        private void Awake()
+        private void Awake() 
         {
             _enemyPool = new ObjectPool<EnemyController>(_enemyPrefab, _prewarmCount, _enemyContainer);
         }

@@ -1,3 +1,4 @@
+using System;
 using Core.Interfaces;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Projectiles
     public class Projectile : MonoBehaviour
     {
         private Rigidbody2D _rb;
-        public System.Action OnReturnedToPool;
+        public Action OnReturnedToPool;
 
         private void Awake()
         {
