@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: e1cd0078a067d8c4eb6e9c6216f06abc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3983490874183692203
+    second: towers_large_0
+  - first:
+      213: -1201053040468616773
+    second: towers_large_1
+  - first:
+      213: 3618413941981310034
+    second: towers_large_2
+  - first:
+      213: 7591060209528328260
+    second: towers_large_3
+  - first:
+      213: -7806068621316413197
+    second: towers_large_4
+  - first:
+      213: 3682541664876784653
+    second: towers_large_5
+  - first:
+      213: -6150882971606458798
+    second: towers_large_6
+  - first:
+      213: -978346498532710654
+    second: towers_large_7
+  - first:
+      213: -1216372128710802377
+    second: towers_large_8
+  - first:
+      213: 2130441935419134139
+    second: towers_large_9
+  - first:
+      213: -2451453556662622602
+    second: towers_large_10
+  - first:
+      213: -2520609685680627869
+    second: towers_large_11
+  - first:
+      213: 9174115903676904820
+    second: towers_large_12
+  - first:
+      213: 3513697853233125992
+    second: towers_large_13
+  - first:
+      213: -2308731319697348408
+    second: towers_large_14
+  - first:
+      213: 4130322435906404637
+    second: towers_large_15
+  - first:
+      213: -7830993851726380158
+    second: towers_large_16
+  - first:
+      213: 536117093030882595
+    second: towers_large_17
+  - first:
+      213: 8050394035387876977
+    second: towers_large_18
+  - first:
+      213: 9215499965098842402
+    second: towers_large_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: towers_large_0
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 1151
+        width: 266
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bafaab938d3384730800000000000000
+      internalID: 3983490874183692203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_1
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 1151
+        width: 222
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb917768f90055fe0800000000000000
+      internalID: -1201053040468616773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_2
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 1151
+        width: 298
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25ced1e1f40373230800000000000000
+      internalID: 3618413941981310034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_3
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 1155
+        width: 210
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 440d9899a0dd85960800000000000000
+      internalID: 7591060209528328260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_4
+      rect:
+        serializedVersion: 2
+        x: 1639
+        y: 1155
+        width: 186
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8ac1e72f54ba390800000000000000
+      internalID: -7806068621316413197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_5
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 767
+        width: 298
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0c6e8d12240b1330800000000000000
+      internalID: 3682541664876784653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_6
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 767
+        width: 266
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25ed56ea68ca3aaa0800000000000000
+      internalID: -6150882971606458798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_7
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 767
+        width: 266
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 207e5b70b073c62f0800000000000000
+      internalID: -978346498532710654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_8
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 767
+        width: 282
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734c1895ef39e1fe0800000000000000
+      internalID: -1216372128710802377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_9
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 767
+        width: 298
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0d04717a9d09d10800000000000000
+      internalID: 2130441935419134139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_10
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 383
+        width: 334
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 676a1c38affaafdd0800000000000000
+      internalID: -2451453556662622602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_11
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 383
+        width: 334
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36fd89b78def40dd0800000000000000
+      internalID: -2520609685680627869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_12
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 383
+        width: 334
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4757ceecec1015f70800000000000000
+      internalID: 9174115903676904820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_13
+      rect:
+        serializedVersion: 2
+        x: 1175
+        y: 383
+        width: 334
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86a5306c49923c030800000000000000
+      internalID: 3513697853233125992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_14
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 383
+        width: 378
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8ee9fc81db5ffd0800000000000000
+      internalID: -2308731319697348408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_15
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 0
+        width: 242
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1107004f5ad15930800000000000000
+      internalID: 4130322435906404637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_16
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 0
+        width: 266
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 283c49d0598b25390800000000000000
+      internalID: -7830993851726380158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_17
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 0
+        width: 334
+        height: 381
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32dee18d7aba07700800000000000000
+      internalID: 536117093030882595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_18
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 0
+        width: 294
+        height: 349
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 176c73de8beb8bf60800000000000000
+      internalID: 8050394035387876977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: towers_large_19
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 0
+        width: 250
+        height: 373
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2295757746804ef70800000000000000
+      internalID: 9215499965098842402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      towers_large_0: 3983490874183692203
+      towers_large_1: -1201053040468616773
+      towers_large_10: -2451453556662622602
+      towers_large_11: -2520609685680627869
+      towers_large_12: 9174115903676904820
+      towers_large_13: 3513697853233125992
+      towers_large_14: -2308731319697348408
+      towers_large_15: 4130322435906404637
+      towers_large_16: -7830993851726380158
+      towers_large_17: 536117093030882595
+      towers_large_18: 8050394035387876977
+      towers_large_19: 9215499965098842402
+      towers_large_2: 3618413941981310034
+      towers_large_3: 7591060209528328260
+      towers_large_4: -7806068621316413197
+      towers_large_5: 3682541664876784653
+      towers_large_6: -6150882971606458798
+      towers_large_7: -978346498532710654
+      towers_large_8: -1216372128710802377
+      towers_large_9: 2130441935419134139
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
