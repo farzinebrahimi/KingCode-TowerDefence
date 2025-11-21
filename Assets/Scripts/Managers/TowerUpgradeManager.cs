@@ -30,7 +30,6 @@ namespace Managers
 
         private void OnTowerSelected(TowerSelectedEvent e)
         {
-            Debug.Log($"[UpgradeManager] Tower selected: {e.SelectedTower?.name ?? "NULL"}");
     
             if (e.SelectedTower == null)
             {
@@ -42,8 +41,6 @@ namespace Managers
 
             if (_selectedTower == null)
             {
-                Debug.LogError($"[UpgradeManager] Tower component not found on {e.SelectedTower.name}!");
-                Debug.Log($"[UpgradeManager] Available components: {string.Join(", ", e.SelectedTower.GetComponents<Component>().Select(c => c.GetType().Name))}");
                 return;
             }
     
@@ -65,7 +62,6 @@ namespace Managers
 
             if (!_selectedTower.CanUpgrade())
             {
-                Debug.Log("Tower's level is max!!!");
                 EventBus.Publish(new TowerUpgradeFailedEvent(_selectedTower, "Max Level"));
                 return;
             }

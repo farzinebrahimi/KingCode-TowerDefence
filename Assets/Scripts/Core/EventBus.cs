@@ -35,9 +35,20 @@ namespace Core
         }
     }
 
-    
+
+    public readonly struct SendMessageEvent
+    {
+        public readonly string Message;
+        public SendMessageEvent(string message) => Message = message;
+    }
 
     #region Tower Placement Events
+
+    public readonly struct CastleAttackEvent
+    {
+        public readonly float CurrentHealth;
+        public CastleAttackEvent(float currentHealth) => CurrentHealth = currentHealth;
+    }
 
     public readonly struct BeginTowerPlacementEvent
     {

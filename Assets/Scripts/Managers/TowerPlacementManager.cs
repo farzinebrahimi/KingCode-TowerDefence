@@ -11,29 +11,22 @@ namespace Managers
         [Header("TileMaps ")] [SerializeField] private Tilemap buildableTile;
         [SerializeField] private Tilemap pathTile;
 
-        [Header("Tower Prefabs")] 
-        [SerializeField]
+        [Header("Tower Prefabs")] [SerializeField]
         private GameObject towerPrefab;
-        
-        [Header("Layers")]
-        [SerializeField]
-        private LayerMask towerLayer;
-        
-        [Header("References")]
-        [SerializeField]
+
+        [Header("Layers")] [SerializeField] private LayerMask towerLayer;
+
+        [Header("References")] [SerializeField]
         private TowerData currentTowerData;
-        [SerializeField]
-        private PlayerData playerData;
+
+        [SerializeField] private PlayerData playerData;
         private int _currentTowerUpgradeCost;
-        
+
         private ISpendMoney _currencyManager;
-        
-        
 
 
-        
-        private  bool _canPlaceTower = false;
-      
+        private bool _canPlaceTower = false;
+
 
         private Camera _mainCamera;
 
@@ -63,50 +56,69 @@ namespace Managers
         {
             _canPlaceTower = e.IsPlacementActive;
         }
-        
+
 
         private void OnMouseClicked(MouseClickEvent e)
         {
-            if (!_canPlaceTower) return;
-            if (e.IsConsumed) return;
-            
+            if (!_canPlaceTower)
+            {
+                EventBus.Publish(new SendMessageEvent("Select the tower button for placing towers!"));
+                return;
+            }
+
+            if (e.IsConsumed)
+            {
+                EventBus.Publish(new SendMessageEvent("Tower Placement Cancelled!"));
+                return;
+            }
+
             Vector2 mousePos = e.WorldPosition;
             RaycastHit2D towerHit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, towerLayer);
-            
+
             if (towerHit.collider != null)
-                return; 
-            
-            
+                return;
+
+
             int buildCost = currentTowerData.Levels[0].buildCost;
-            
+
             foreach (var towerLevel in currentTowerData.Levels)
             {
                 _currentTowerUpgradeCost = towerLevel.upgradeCost;
             }
 
             if (!_currencyManager.SpendMoney(buildCost))
+            {
+                EventBus.Publish(new SendMessageEvent("Not Enough Money!"));
                 return;
-            
-            Vector2 mousePosition = e.WorldPosition; 
+            }
+
+            Vector2 mousePosition = e.WorldPosition;
             Vector3Int tilePosition = buildableTile.WorldToCell(mousePosition);
 
             bool isBuildable = buildableTile.GetTile(tilePosition) != null;
             bool isPath = pathTile.GetTile(tilePosition) != null;
 
 
-            if (!isBuildable || isPath) return;
+            if (!isBuildable || isPath)
+            {
+                EventBus.Publish(new SendMessageEvent("Yoc can only place towers on area out of the road!"));
+                return;
+            }
 
             Vector3 cellCenter = buildableTile.GetCellCenterWorld(tilePosition);
             Collider2D overlap = Physics2D.OverlapPoint(cellCenter, LayerMask.GetMask("TowerBase"));
 
-            if (overlap != null) return;
-            
+            if (overlap != null)
+            {
+                EventBus.Publish(new SendMessageEvent("Tower Base Overlap!"));
+                return;
+            }
+
             GameObject tower = Instantiate(towerPrefab, cellCenter, Quaternion.identity);
             EventBus.Publish(new TowerPlacedEvent(tower.transform));
 
             e.Consume();
             _canPlaceTower = false;
-
         }
     }
 }

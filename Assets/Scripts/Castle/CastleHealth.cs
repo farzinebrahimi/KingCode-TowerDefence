@@ -1,4 +1,5 @@
 ﻿using System;
+using Core;
 using Core.Interfaces;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ namespace Castle
         {
             _currentHealth -= damage;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+            EventBus.Publish(new CastleAttackEvent(_currentHealth));
             if (_currentHealth <= 0)
                 Die();
         }

@@ -10,7 +10,7 @@ namespace Managers
         [SerializeField] private AudioSource musicSource;
         
         [Header("Volume Settings")]
-        [SerializeField][Range(0f, 1f)] private float musicVolume = 0.5f;
+        [SerializeField][Range(0f, 1f)] private float musicVolume = 1f;
         
         [Header("Fade Settings")]
         [SerializeField] private bool useFadeIn = true;

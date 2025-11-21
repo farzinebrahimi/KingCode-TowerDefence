@@ -53,6 +53,7 @@ namespace Managers
             if (amount < 0) return false;
             if(!HasMoney(amount))
             {
+                EventBus.Publish(new SendMessageEvent("Not enough money!"));;
                 EventBus.Publish(new MoneySpendFailedEvent(amount, _currentMoney));
                 return false;
             }
