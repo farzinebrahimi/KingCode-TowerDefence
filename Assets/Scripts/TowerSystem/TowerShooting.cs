@@ -62,6 +62,7 @@ namespace TowerSystem
 
             Vector2 dir = (_currentTarget.position - shootPoint.position).normalized;
             projectile.Launch(dir, 4f,damage);
+            EventBus.Publish(new ShotFiredEvent());
         }
 
         public void SetState(float newDamage, float newFireRate)

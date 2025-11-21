@@ -14,6 +14,7 @@ namespace Enemies
         private float _currentHealth;
         
         private Action _onDeathCallback;
+        public  Action OnDeath;
         private void OnEnable()
         {
             currentHealth = maxHealth;
@@ -37,6 +38,7 @@ namespace Enemies
 
         private void Die()
         {
+            OnDeath?.Invoke();
             EventBus.Publish(new EnemyKilledEvent(moneyReward, transform.position));
             
             _onDeathCallback?.Invoke();

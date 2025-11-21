@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Data;
 using TowerSystem;
 using UnityEngine;
 
@@ -179,6 +178,21 @@ namespace Core
         public Transform DeselectedTower;
         public TowerDeselectedEvent(Transform deselectedTower) => DeselectedTower = deselectedTower;
     }
+
+    #endregion
+
+    #region sfx Events
+   
+    public struct ShotFiredEvent
+    {
+        
+    }
+
+    public struct ClickButtonSfxEvent
+    {
+        
+    }
+    
 
     #endregion
 
