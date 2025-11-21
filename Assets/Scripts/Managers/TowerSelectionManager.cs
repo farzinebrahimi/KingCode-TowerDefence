@@ -1,5 +1,6 @@
 ﻿using System;
 using Core;
+using TowerSystem;
 using UnityEngine;
 
 namespace Managers
@@ -14,7 +15,9 @@ namespace Managers
         
         private Transform _currentSelectedTower;
         private GameObject _selectionIndicator;
-        private Camera _cam;
+        
+        
+        private bool _isPlacementActive;
 
         private void OnEnable()
         {
@@ -26,19 +29,48 @@ namespace Managers
             EventBus.Unsubscribe<MouseClickEvent>(OnMouseClicked);
         }
 
-        private void Awake()
+        private void OnPlacementStateChanged(TowerPlacementStateChangedEvent e)
         {
-            _cam = Camera.main;
+            _isPlacementActive = e.IsPlacementActive;
+            
+            if (_isPlacementActive && _currentSelectedTower != null)
+            {
+                DeselectTower();
+            }
         }
 
         private void OnMouseClicked(MouseClickEvent e)
         {
-            Vector2 mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, towerLayer);
+
+            if (_isPlacementActive)
+            {
+                return;
+            }
+
+            if (e.IsConsumed)
+            {
+                return;
+            }
+
+            Vector2 mouseWorldPos = e.WorldPosition;
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPos, Vector2.zero, 0f, towerLayer);
 
             if (hit.collider != null)
             {
-                SelectTower(hit.transform);
+                Transform clickedTransform = hit.collider.transform;
+        
+                Tower towerComponent = clickedTransform.GetComponentInParent<Tower>();
+        
+                if (towerComponent != null)
+                {
+                    Transform towerTransform = towerComponent.transform;
+                    SelectTower(towerTransform);
+                    e.Consume();
+                }
+                else
+                {
+                    Debug.Log($"[Selection] No Tower component found on {clickedTransform.name} or its parents");
+                }
             }
             else
             {

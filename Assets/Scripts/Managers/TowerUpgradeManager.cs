@@ -1,5 +1,7 @@
-﻿using Core;
+﻿using System.Linq;
+using Core;
 using Core.Interfaces;
+using TowerSystem;
 using UnityEngine;
 
 namespace Managers
@@ -7,7 +9,7 @@ namespace Managers
     public class TowerUpgradeManager : MonoBehaviour
     {
         private ICurrencyManager _currencyManager;
-        private Tower.Tower _selectedTower;
+        private Tower _selectedTower;
 
         private void Awake()
         {
@@ -28,10 +30,24 @@ namespace Managers
 
         private void OnTowerSelected(TowerSelectedEvent e)
         {
-            _selectedTower = e.SelectedTower.GetComponent<Tower.Tower>();
+            Debug.Log($"[UpgradeManager] Tower selected: {e.SelectedTower?.name ?? "NULL"}");
+    
+            if (e.SelectedTower == null)
+            {
+                Debug.LogError("[UpgradeManager] SelectedTower is NULL in event!");
+                return;
+            }
+    
+            _selectedTower = e.SelectedTower.GetComponent<Tower>();
 
             if (_selectedTower == null)
+            {
+                Debug.LogError($"[UpgradeManager] Tower component not found on {e.SelectedTower.name}!");
+                Debug.Log($"[UpgradeManager] Available components: {string.Join(", ", e.SelectedTower.GetComponents<Component>().Select(c => c.GetType().Name))}");
                 return;
+            }
+    
+            Debug.Log($"[UpgradeManager] Tower component found! Level: {_selectedTower.GetCurrentLevel()}");
         }
 
         private void OnTowerDeselected(TowerDeselectedEvent e)

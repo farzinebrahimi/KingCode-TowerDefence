@@ -8,21 +8,37 @@ namespace Managers
 {
     public class EnemyManager : MonoBehaviour
     {
-         [SerializeField] private EnemyController _enemyPrefab;
-         [SerializeField] private Transform _enemyContainer;
-         [SerializeField] private int _prewarmCount = 10;
+         [SerializeField] private EnemyController enemyPrefab;
+         [SerializeField] private Transform enemyContainer;
+         [SerializeField] private int prewarmCount = 10;
         
 
-        [SerializeField]
         private ObjectPool<EnemyController> _enemyPool;
         [SerializeField]
-        private List<Vector3> _waypoints;
+        private List<Vector3> waypoints;
         [SerializeField]
-        private bool _isPathReady = false;
+        private bool isPathReady = false;
         
         private void Awake() 
         {
-            _enemyPool = new ObjectPool<EnemyController>(_enemyPrefab, _prewarmCount, _enemyContainer);
+            if (enemyPrefab == null)
+            {
+                enabled = false;
+                return;
+            }
+
+            if (enemyContainer == null)
+            {
+                var container = new GameObject("Enemy Container");
+                enemyContainer = container.transform;
+            }
+
+            _enemyPool = new ObjectPool<EnemyController>(
+                enemyPrefab, 
+                prewarmCount, 
+                enemyContainer
+            );
+            
         }
         
         private void OnEnable()
@@ -45,25 +61,25 @@ namespace Managers
                 return;
             }
             
-            _waypoints = new List<Vector3>(e.Waypoints); 
-            _isPathReady = true;
+            waypoints = new List<Vector3>(e.Waypoints); 
+            isPathReady = true;
             
             InvokeRepeating(nameof(SpawnEnemy), 1f, 2f);
         }
 
         private void SpawnEnemy()
         {
-            if (!_isPathReady || _waypoints == null || _waypoints.Count == 0)
+            if (!isPathReady || waypoints == null || waypoints.Count == 0)
             {
                 return;
             }
             
-            var enemy = _enemyPool.Get(_waypoints[0], Quaternion.identity);
+            var enemy = _enemyPool.Get(waypoints[0], Quaternion.identity);
             
             if (enemy != null)
             {
                 enemy.gameObject.SetActive(true);
-                enemy.Init(_waypoints, () => _enemyPool.ReturnToPool(enemy));
+                enemy.Init(waypoints, () => _enemyPool.ReturnToPool(enemy));
             }
         }
     }

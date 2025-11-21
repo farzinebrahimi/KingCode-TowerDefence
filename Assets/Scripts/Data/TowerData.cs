@@ -19,17 +19,18 @@ namespace Data
         public float fireRateGrowthMultiplier = 1.1f;
 
         public float upgradeCostGrowthMultiplier = 1.5f;
+        
 
         public int GetUpgradeCost(int currentLevel)
         {
-            if (currentLevel >= Levels.Count)
+            if (currentLevel < 0 || currentLevel >= Levels.Count - 1)
                 return 0;
             return Levels[currentLevel + 1].upgradeCost;
         }
 
         public bool CanUpgrade(int currentLevel)
         {
-            return currentLevel < Levels.Count - 1;
+            return currentLevel >= 0 && currentLevel < Levels.Count - 1;
         }
 
 

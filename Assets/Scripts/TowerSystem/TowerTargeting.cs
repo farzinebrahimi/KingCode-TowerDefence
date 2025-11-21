@@ -3,7 +3,7 @@ using Core;
 using Enemies;
 using UnityEngine;
 
-namespace Tower
+namespace TowerSystem
 {
     public class TowerTargeting : MonoBehaviour
     {

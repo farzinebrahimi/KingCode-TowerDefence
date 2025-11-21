@@ -1,6 +1,7 @@
 ﻿using Core;
 using Managers;
 using TMPro;
+using TowerSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI towerStatsText;
 
         private TowerUpgradeManager _upgradeManager;
-        private Tower.Tower _selectedTower;
+        private Tower _selectedTower;
 
         private void Awake()
         {
@@ -43,7 +44,7 @@ namespace UI
 
         private void OnTowerSelected(TowerSelectedEvent e)
         {
-            _selectedTower = e.SelectedTower.GetComponent<Tower.Tower>();
+            _selectedTower = e.SelectedTower.GetComponent<Tower>();
             upgradePanel.SetActive(true);
             UpdateUI();
         }
@@ -68,7 +69,7 @@ namespace UI
         {
             if (_selectedTower == null) return;
 
-            currentLevelText.text = $"Level: {_selectedTower.GetCurrentLevel()}";
+            currentLevelText.text = $"{_selectedTower.GetCurrentLevel()}";
 
             towerStatsText.text = 
                 $"Damage: {_selectedTower.GetDamage():F1}\n" +
@@ -81,7 +82,7 @@ namespace UI
             if (canUpgrade)
             {
                 int cost = _selectedTower.GetUpgradeCost();
-                upgradeCostText.text = $"Cost: {cost}";
+                upgradeCostText.text = $"{cost}";
             }
             else
             {

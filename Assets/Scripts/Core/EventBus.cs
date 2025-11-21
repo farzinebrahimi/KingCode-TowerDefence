@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Data;
+using TowerSystem;
 using UnityEngine;
 
 namespace Core
@@ -35,7 +36,7 @@ namespace Core
         }
     }
 
-    //event type
+    
 
     #region Tower Placement Events
 
@@ -57,10 +58,20 @@ namespace Core
         public TowerPlacedEvent(Transform tower) => Tower = tower;
     }
 
-    public readonly struct MouseClickEvent
+    public struct MouseClickEvent
     {
-        public readonly Vector3 WorldPosition;
-        public MouseClickEvent(Vector3 worldPosition) => WorldPosition = worldPosition;
+        public  Vector3 WorldPosition;
+        public  bool IsConsumed;
+
+        public MouseClickEvent(Vector3 worldPosition)
+        {
+            WorldPosition = worldPosition;
+            IsConsumed = false;
+        }
+        public void Consume()
+        {
+            IsConsumed = true;
+        }
     }
 
     public readonly struct PathConstructedEvent
@@ -138,19 +149,19 @@ namespace Core
 
     public struct TowerUpgradedEvent
     {
-        public Tower.Tower UpgradedTower;
+        public Tower UpgradedTower;
 
-        public TowerUpgradedEvent(Tower.Tower upgradedTower)
+        public TowerUpgradedEvent(Tower upgradedTower)
         {
             UpgradedTower = upgradedTower;
         }
     }
     public struct TowerUpgradeFailedEvent
     {
-        public Tower.Tower Tower;
+        public Tower Tower;
         public string Reason;
 
-        public TowerUpgradeFailedEvent(Tower.Tower tower, string reason)
+        public TowerUpgradeFailedEvent(Tower tower, string reason)
         {
             Tower = tower;
             Reason = reason;

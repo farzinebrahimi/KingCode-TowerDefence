@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Tower
+namespace TowerSystem
 {
     public class TowerPreviewController : MonoBehaviour
     {

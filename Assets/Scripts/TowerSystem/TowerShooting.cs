@@ -3,7 +3,7 @@ using Core.Interfaces;
 using Data;
 using UnityEngine;
 
-namespace Tower
+namespace TowerSystem
 {
     public class TowerShooting : MonoBehaviour
     {
@@ -61,7 +61,7 @@ namespace Tower
             projectile.transform.position = shootPoint.position;
 
             Vector2 dir = (_currentTarget.position - shootPoint.position).normalized;
-            projectile.Launch(dir, 10f,damage);
+            projectile.Launch(dir, 4f,damage);
         }
 
         public void SetState(float newDamage, float newFireRate)

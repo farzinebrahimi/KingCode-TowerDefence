@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower.Tower
   towerData: {fileID: 11400000, guid: aded10653edd7254a94e5cf438272a6e, type: 2}
-  spriteRenderer: {fileID: 3487249558547974168}
+  spriteRenderer: {fileID: 4230197438556128696, guid: 9cbe90b68bdebb8418f751ea4f0c6958, type: 3}
   currentLevel: 0
 --- !u!1 &7731067024301328326
 GameObject:
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower.TowerTargeting
   parentTower: {fileID: 3845258888886777049}
-  detectionRadius: 3
+  detectionRadius: 1.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8

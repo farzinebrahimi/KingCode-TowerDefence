@@ -1,7 +1,7 @@
 ﻿using Data;
 using UnityEngine;
 
-namespace Tower
+namespace TowerSystem
 {
     public class Tower : MonoBehaviour
     {
@@ -27,7 +27,7 @@ namespace Tower
 
         private void Start()
         {
-            // اعمال stat های اولیه
+
             ApplyLevelState();
         }
 

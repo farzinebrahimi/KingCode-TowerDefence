@@ -1,6 +1,6 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Core.Interfaces;
-using Managers;
 using UnityEngine;
 
 namespace Enemies
@@ -11,13 +11,24 @@ namespace Enemies
         [SerializeField] private float currentHealth;
         [SerializeField] private int moneyReward = 10;
 
-        private void Start()
+        private float _currentHealth;
+        
+        private Action _onDeathCallback;
+        private void OnEnable()
         {
             currentHealth = maxHealth;
         }
 
+        public void Initialize(Action onDeathCallback)
+        {
+            _currentHealth = maxHealth;
+            _onDeathCallback = onDeathCallback;
+        }
+
         public void TakeDamage(float damage)
         {
+            if (_currentHealth <= 0) return;
+            
             currentHealth -= damage;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
             if (currentHealth <= 0)
@@ -26,8 +37,10 @@ namespace Enemies
 
         private void Die()
         {
-            Destroy(gameObject,0.1f);
             EventBus.Publish(new EnemyKilledEvent(moneyReward, transform.position));
+            
+            _onDeathCallback?.Invoke();
         }
+      
     }
 }

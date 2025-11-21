@@ -10,6 +10,8 @@ namespace Enemies
         private List<Vector3> waypoints;
         [SerializeField]
         private int currentIndex;
+        [SerializeField]
+        private EnemyHealth health;
         
         private Action _onDeathReturn;
 
@@ -20,6 +22,9 @@ namespace Enemies
             this.waypoints = waypoints;
             currentIndex = 0;
             _onDeathReturn = returnAction;
+            
+            health.Initialize(() => OnEnemyDeath());
+            
             gameObject.SetActive(true);
         }
 
@@ -27,7 +32,10 @@ namespace Enemies
         {
             if (waypoints == null || waypoints.Count == 0) return;
 
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[currentIndex], speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(
+                transform.position, 
+                waypoints[currentIndex], 
+                speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, waypoints[currentIndex]) < 0.1f)
             {
@@ -38,6 +46,11 @@ namespace Enemies
                     _onDeathReturn?.Invoke(); 
                 }
             }
+        }
+        
+        private void OnEnemyDeath()
+        {
+            _onDeathReturn?.Invoke();
         }
     }
 }
