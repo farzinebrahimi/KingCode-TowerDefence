@@ -1,4 +1,3 @@
-using System;
 using Core;
 using Core.Interfaces;
 using Data;
@@ -74,7 +73,6 @@ namespace Managers
             if (!_currencyManager.SpendMoney(buildCost))
                 return;
             
-            Debug.Log("you have enough money to place tower");
             Vector3 mousePosition = e.WorldPosition; 
             Vector3Int tilePosition = buildableTile.WorldToCell(mousePosition);
 

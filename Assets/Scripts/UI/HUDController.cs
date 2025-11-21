@@ -1,9 +1,7 @@
-﻿using System;
-using Core;
+﻿using Core;
 using Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
@@ -15,7 +13,8 @@ namespace UI
         private void Awake()
         {
             if (CurrencyManager.Instance == null) return;
-            resourcesText.text = CurrencyManager.Instance.GetCurrentMoney().ToString();
+            resourcesText.text = CurrencyManager.Instance.CurrentMoney.ToString();
+            Debug.Log(resourcesText.text);
         }
 
 
@@ -30,7 +29,7 @@ namespace UI
         
         private  void OnResourceHandler(MoneyChangedEvent e)
         {
-            resourcesText.text = e.Money.ToString();
+            resourcesText.text = e.CurrentAmount.ToString();
         }
 
         

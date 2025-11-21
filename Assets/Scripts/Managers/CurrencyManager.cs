@@ -6,13 +6,18 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class CurrencyManager : MonoBehaviour, ISpendMoney 
+    public class CurrencyManager : MonoBehaviour, ISpendMoney, ICurrencyManager
     {
         [SerializeField] private PlayerData playerData;
-        private  int _currentMoney;
+
+        [Header("Starting Money")] [SerializeField]
+        private int startingMoney = 100;
 
         public static CurrencyManager Instance { get; private set; }
 
+        private int _currentMoney;
+
+        public int CurrentMoney => _currentMoney;
 
         private void OnEnable()
         {
@@ -38,38 +43,46 @@ namespace Managers
             }
 
             Instance = this;
-    
-            if (playerData != null)
-                _currentMoney = playerData.money;
+            _currentMoney = startingMoney;
 
-            PublishMoneyUpdate();
         }
 
-       
 
         public bool SpendMoney(int amount)
         {
-            if (_currentMoney >= amount)
+            if (amount < 0) return false;
+            if(!HasMoney(amount))
             {
-                Debug.Log($"Spending {amount} money");
-                _currentMoney -= amount;
-                _currentMoney = Mathf.Clamp(_currentMoney, 0, int.MaxValue);
-                PublishMoneyUpdate();
-                return true;
+                EventBus.Publish(new MoneySpendFailedEvent(amount, _currentMoney));
+                return false;
             }
-            return false;
+            _currentMoney -= amount;
+            EventBus.Publish(new MoneyChangedEvent(_currentMoney, -amount));
+            return true;
         }
 
-        public void AddMoney(int money)
+        public bool HasMoney(int amount)
         {
-            _currentMoney += money;
-            PublishMoneyUpdate();
+            return _currentMoney >= amount;
         }
 
-        private void PublishMoneyUpdate()
+        public void SetMoney(int amount)
         {
-            EventBus.Publish(new MoneyChangedEvent(_currentMoney));
+            int prevMoney = _currentMoney;
+            _currentMoney += Mathf.Max(0, amount);
+
+            int change = _currentMoney - prevMoney;
+            EventBus.Publish(new MoneyChangedEvent(_currentMoney, change));
         }
+
+
+        public void AddMoney(int amount)
+        {
+            if (amount < 0) return;
+            _currentMoney += amount;
+            EventBus.Publish(new MoneyChangedEvent(_currentMoney, amount));
+        }
+        
 
         public int GetCurrentMoney() => _currentMoney;
     }

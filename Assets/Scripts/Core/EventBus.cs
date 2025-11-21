@@ -7,27 +7,27 @@ namespace Core
 {
     public static class EventBus
     {
-        private static readonly Dictionary<Type, List<Delegate>> _subscribers = new();
+        private static readonly Dictionary<Type, List<Delegate>> Subscribers = new();
 
         public static void Subscribe<T>(Action<T> handler)
         {
             var type = typeof(T);
-            if (!_subscribers.ContainsKey(type))
-                _subscribers[type] = new List<Delegate>();
-            _subscribers[type].Add(handler);
+            if (!Subscribers.ContainsKey(type))
+                Subscribers[type] = new List<Delegate>();
+            Subscribers[type].Add(handler);
         }
 
         public static void Unsubscribe<T>(Action<T> handler)
         {
             var type = typeof(T);
-            if (_subscribers.TryGetValue(type, out var handlers))
+            if (Subscribers.TryGetValue(type, out var handlers))
                 handlers.Remove(handler);
         }
 
         public static void Publish<T>(T eventData)
         {
             var type = typeof(T);
-            if (!_subscribers.TryGetValue(type, out var handlers))
+            if (!Subscribers.TryGetValue(type, out var handlers))
                 return;
 
             foreach (var handler in handlers)
@@ -98,10 +98,27 @@ namespace Core
 
     #region Currency Events
 
-    public readonly struct MoneyChangedEvent
+    public  struct MoneyChangedEvent
     {
-        public readonly int Money;
-        public MoneyChangedEvent(int money) => Money = money;
+        public  int CurrentAmount;
+        public  int ChangeAmount;
+
+        public MoneyChangedEvent(int currentAmount, int changeAmount)
+        {
+            CurrentAmount = currentAmount;
+            ChangeAmount = changeAmount;
+        }
+    }
+    public struct MoneySpendFailedEvent
+    {
+        public int RequiredAmount;
+        public int CurrentAmount;
+
+        public MoneySpendFailedEvent(int requiredAmount, int currentAmount)
+        {
+            RequiredAmount = requiredAmount;
+            CurrentAmount = currentAmount;
+        }
     }
     public readonly struct EnemyKilledEvent
     {
@@ -116,18 +133,43 @@ namespace Core
     }
 
     #endregion
-    
+
+    #region Upgrade System Events
+
     public struct TowerUpgradedEvent
     {
-        public GameObject Tower;
-        public int NewLevel;
+        public Tower.Tower UpgradedTower;
 
-        public TowerUpgradedEvent(GameObject tower, int newLevel)
+        public TowerUpgradedEvent(Tower.Tower upgradedTower)
         {
-            Tower = tower;
-            NewLevel = newLevel;
+            UpgradedTower = upgradedTower;
         }
     }
+    public struct TowerUpgradeFailedEvent
+    {
+        public Tower.Tower Tower;
+        public string Reason;
+
+        public TowerUpgradeFailedEvent(Tower.Tower tower, string reason)
+        {
+            Tower = tower;
+            Reason = reason;
+        }
+    }
+
+    public struct TowerSelectedEvent
+    {
+        public Transform SelectedTower;
+        public TowerSelectedEvent(Transform selectedTower) => SelectedTower = selectedTower;
+    }
+
+    public struct TowerDeselectedEvent
+    {
+        public Transform DeselectedTower;
+        public TowerDeselectedEvent(Transform deselectedTower) => DeselectedTower = deselectedTower;
+    }
+
+    #endregion
 
     
 }
