@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Data;
 using UnityEngine;
 
 namespace Core
@@ -38,6 +39,18 @@ namespace Core
 
     #region Tower Placement Events
 
+    public readonly struct BeginTowerPlacementEvent
+    {
+        public readonly Sprite TowerSprite;
+        public BeginTowerPlacementEvent(Sprite towerSprite) => TowerSprite = towerSprite;
+    }
+    public readonly struct TowerPlacementStateChangedEvent
+    {
+        public readonly bool IsPlacementActive;
+
+        public TowerPlacementStateChangedEvent(bool isActive) => IsPlacementActive = isActive;
+        
+    }
     public readonly struct TowerPlacedEvent
     {
         public readonly Transform Tower;
@@ -89,6 +102,17 @@ namespace Core
     {
         public readonly int Money;
         public MoneyChangedEvent(int money) => Money = money;
+    }
+    public readonly struct EnemyKilledEvent
+    {
+        public readonly int MoneyReward;
+        public readonly Vector3 Position;
+
+        public EnemyKilledEvent(int moneyReward, Vector3 position)
+        {
+            MoneyReward = moneyReward;
+            Position = position;
+        }
     }
 
     #endregion

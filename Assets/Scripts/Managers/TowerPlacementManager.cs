@@ -1,4 +1,6 @@
+using System;
 using Core;
+using Core.Interfaces;
 using Data;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -10,11 +12,23 @@ namespace Managers
         [Header("TileMaps ")] [SerializeField] private Tilemap buildableTile;
         [SerializeField] private Tilemap pathTile;
 
-        [Header("Tower Prefabs")] [SerializeField]
+        [Header("Tower Prefabs")] 
+        [SerializeField]
         private GameObject towerPrefab;
         
+        [Header("References")]
         [SerializeField]
-        private TowerData _towerData;
+        private TowerData currentTowerData;
+        [SerializeField]
+        private PlayerData playerData;
+        private int _currentTowerUpgradeCost;
+        
+        private ISpendMoney _currencyManager;
+
+
+        
+        private  bool _canPlaceTower = false;
+      
 
         private Camera _mainCamera;
 
@@ -22,19 +36,45 @@ namespace Managers
         {
             _mainCamera = Camera.main;
         }
-        
+
+        private void Start()
+        {
+            _currencyManager = CurrencyManager.Instance;
+        }
+
         private void OnEnable()
         {
             EventBus.Subscribe<MouseClickEvent>(OnMouseClicked);
+            EventBus.Subscribe<TowerPlacementStateChangedEvent>(OnPlacementStateChanged);
         }
 
         private void OnDisable()
         {
             EventBus.Unsubscribe<MouseClickEvent>(OnMouseClicked);
+            EventBus.Unsubscribe<TowerPlacementStateChangedEvent>(OnPlacementStateChanged);
         }
+
+        private void OnPlacementStateChanged(TowerPlacementStateChangedEvent e)
+        {
+            _canPlaceTower = e.IsPlacementActive;
+        }
+        
 
         private void OnMouseClicked(MouseClickEvent e)
         {
+            if (!_canPlaceTower) return;
+
+            int buildCost = currentTowerData.Levels[0].buildCost;
+            
+            foreach (var towerLevel in currentTowerData.Levels)
+            {
+                _currentTowerUpgradeCost = towerLevel.upgradeCost;
+            }
+
+            if (!_currencyManager.SpendMoney(buildCost))
+                return;
+            
+            Debug.Log("you have enough money to place tower");
             Vector3 mousePosition = e.WorldPosition; 
             Vector3Int tilePosition = buildableTile.WorldToCell(mousePosition);
 
@@ -59,13 +99,9 @@ namespace Managers
 
             GameObject tower = Instantiate(towerPrefab, cellCenter, Quaternion.identity);
             EventBus.Publish(new TowerPlacedEvent(tower.transform));
-            foreach (var lvl in _towerData.Levels)
-            {   
-                EventBus.Publish(new MoneyChangedEvent(lvl.upgradeCost));    
-                
-            }
-            
-            
+
+            _canPlaceTower = false;
+
         }
     }
 }

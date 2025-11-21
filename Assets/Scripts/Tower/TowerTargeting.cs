@@ -43,7 +43,8 @@ namespace Tower
         {
             detectionRadius = radius;
             
-            if(_collider != null) _collider.radius = radius;
+            if(_collider != null) 
+                _collider.radius = radius;
         }
         
 

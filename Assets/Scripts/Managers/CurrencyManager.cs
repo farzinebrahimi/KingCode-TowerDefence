@@ -6,28 +6,52 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class CurrencyManager : MonoBehaviour, ISpendMoney , IAddMoney
+    public class CurrencyManager : MonoBehaviour, ISpendMoney 
     {
         [SerializeField] private PlayerData playerData;
         private  int _currentMoney;
 
-        private void Awake()
-        {
-            if(playerData != null)
-                _currentMoney = playerData.money;
-            PublishMoneyUpdate();
-        }
+        public static CurrencyManager Instance { get; private set; }
+
 
         private void OnEnable()
         {
-            
+            EventBus.Subscribe<EnemyKilledEvent>(OnEnemyKilled);
         }
 
+        private void OnDisable()
+        {
+            EventBus.Unsubscribe<EnemyKilledEvent>(OnEnemyKilled);
+        }
+
+        private void OnEnemyKilled(EnemyKilledEvent e)
+        {
+            AddMoney(e.MoneyReward);
+        }
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+    
+            if (playerData != null)
+                _currentMoney = playerData.money;
+
+            PublishMoneyUpdate();
+        }
+
+       
 
         public bool SpendMoney(int amount)
         {
             if (_currentMoney >= amount)
             {
+                Debug.Log($"Spending {amount} money");
                 _currentMoney -= amount;
                 _currentMoney = Mathf.Clamp(_currentMoney, 0, int.MaxValue);
                 PublishMoneyUpdate();

@@ -1,4 +1,6 @@
-﻿using Core.Interfaces;
+﻿using Core;
+using Core.Interfaces;
+using Managers;
 using UnityEngine;
 
 namespace Enemies
@@ -7,6 +9,7 @@ namespace Enemies
     {
         [SerializeField] private float maxHealth;
         [SerializeField] private float currentHealth;
+        [SerializeField] private int moneyReward = 10;
 
         private void Start()
         {
@@ -24,6 +27,7 @@ namespace Enemies
         private void Die()
         {
             Destroy(gameObject,0.1f);
+            EventBus.Publish(new EnemyKilledEvent(moneyReward, transform.position));
         }
     }
 }

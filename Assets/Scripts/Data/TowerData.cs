@@ -56,7 +56,8 @@ namespace Data
             public float range;
             public float fireRate;
 
-            [Header("Upgrade")] 
+            [Header("Build & Upgrade")] 
+            public int buildCost;     
             public int upgradeCost;
             public int level;
 

@@ -12,6 +12,7 @@ namespace Tower
         private Transform shootPoint;
         [SerializeField]
         private float fireRate;
+        [SerializeField]
         private Transform _currentTarget;
         
         [Header("Debug Info - Runtime Only")]

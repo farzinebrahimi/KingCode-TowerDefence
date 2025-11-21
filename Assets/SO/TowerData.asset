@@ -15,10 +15,11 @@ MonoBehaviour:
   towerName: Tower
   description: 
   Levels:
-  - damage: 10
+  - damage: 2
     range: 3
     fireRate: 0.6
-    upgradeCost: 50
+    buildCost: 20
+    upgradeCost: 0
     level: 1
     towerSprite: {fileID: 3953150516908535398, guid: 3714804e9e5f20741af43072e5e2c277, type: 3}
   damageGrowthMultiplier: 1.2

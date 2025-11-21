@@ -1,6 +1,7 @@
 ﻿using System;
 using Core;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 namespace InputSystem
@@ -9,8 +10,11 @@ namespace InputSystem
     {
         private Camera _camera;
         private InputActions _inputActions; 
+        
+        private bool _clickPending;
+        private Vector2 _clickScreenPos;
 
-        public Vector2 MouseScreenPosition => Mouse.current.position.ReadValue();
+        
 
         private void Awake()
         {
@@ -22,20 +26,37 @@ namespace InputSystem
         {
             _inputActions.Enable();
             _inputActions.Gameplay.Click.performed += OnClickPerformed;
+            _inputActions.Gameplay.Release.performed += OnClickRelease;
         }
 
         private void OnDisable()
         {
-            _inputActions.Gameplay.Click.performed -= OnClickPerformed;
             _inputActions.Disable();
+            _inputActions.Gameplay.Click.performed -= OnClickPerformed;
+            _inputActions.Gameplay.Release.performed -= OnClickRelease;
+        }
+
+        private void OnClickRelease(InputAction.CallbackContext ctx)
+        {
+            
         }
 
         private void OnClickPerformed(InputAction.CallbackContext ctx)
         {
-           
+            _clickScreenPos = Mouse.current.position.ReadValue();
+            _clickPending = true;
+        }
 
-            Vector2 screenPos = Mouse.current.position.ReadValue();
-            Vector3 worldPos = _camera.ScreenToWorldPoint(screenPos);
+        private void LateUpdate()
+        {
+            if (!_clickPending) return;
+            _clickPending = false;
+
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+            
+
+            Vector3 worldPos = _camera.ScreenToWorldPoint(_clickScreenPos);
             worldPos.z = 0f;
 
             EventBus.Publish(new MouseClickEvent(worldPos));

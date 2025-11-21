@@ -100,6 +100,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Release"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb234edd-7c18-4ea9-ae08-514604ceec14"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -111,6 +120,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25551bbc-071e-4d23-a8d9-6839e9578872"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2eb6ceb8-a180-4abd-beab-e82a53a309a9"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Release"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55671f40-d6f0-4a46-a493-80d1add2617f"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Release"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -699,6 +741,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Click = m_Gameplay.FindAction("Click", throwIfNotFound: true);
+        m_Gameplay_Release = m_Gameplay.FindAction("Release", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -793,6 +836,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Click;
+    private readonly InputAction m_Gameplay_Release;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -808,6 +852,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Click".
         /// </summary>
         public InputAction @Click => m_Wrapper.m_Gameplay_Click;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Release".
+        /// </summary>
+        public InputAction @Release => m_Wrapper.m_Gameplay_Release;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -837,6 +885,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Release.started += instance.OnRelease;
+            @Release.performed += instance.OnRelease;
+            @Release.canceled += instance.OnRelease;
         }
 
         /// <summary>
@@ -851,6 +902,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Release.started -= instance.OnRelease;
+            @Release.performed -= instance.OnRelease;
+            @Release.canceled -= instance.OnRelease;
         }
 
         /// <summary>
@@ -1158,6 +1212,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Release" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRelease(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
