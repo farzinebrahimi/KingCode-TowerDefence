@@ -1,4 +1,3 @@
-using System;
 using Core;
 using Core.Interfaces;
 using Data;
@@ -16,6 +15,10 @@ namespace Managers
         [SerializeField]
         private GameObject towerPrefab;
         
+        [Header("Layers")]
+        [SerializeField]
+        private LayerMask towerLayer;
+        
         [Header("References")]
         [SerializeField]
         private TowerData currentTowerData;
@@ -24,6 +27,8 @@ namespace Managers
         private int _currentTowerUpgradeCost;
         
         private ISpendMoney _currencyManager;
+        
+        
 
 
         
@@ -63,7 +68,15 @@ namespace Managers
         private void OnMouseClicked(MouseClickEvent e)
         {
             if (!_canPlaceTower) return;
-
+            if (e.IsConsumed) return;
+            
+            Vector2 mousePos = e.WorldPosition;
+            RaycastHit2D towerHit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, towerLayer);
+            
+            if (towerHit.collider != null)
+                return; 
+            
+            
             int buildCost = currentTowerData.Levels[0].buildCost;
             
             foreach (var towerLevel in currentTowerData.Levels)
@@ -74,32 +87,24 @@ namespace Managers
             if (!_currencyManager.SpendMoney(buildCost))
                 return;
             
-            Debug.Log("you have enough money to place tower");
-            Vector3 mousePosition = e.WorldPosition; 
+            Vector2 mousePosition = e.WorldPosition; 
             Vector3Int tilePosition = buildableTile.WorldToCell(mousePosition);
 
             bool isBuildable = buildableTile.GetTile(tilePosition) != null;
             bool isPath = pathTile.GetTile(tilePosition) != null;
-            
 
-            if (!isBuildable || isPath)
-            {
-                Debug.LogWarning("Cannot place tower here");
-                return;
-            }
+
+            if (!isBuildable || isPath) return;
 
             Vector3 cellCenter = buildableTile.GetCellCenterWorld(tilePosition);
             Collider2D overlap = Physics2D.OverlapPoint(cellCenter, LayerMask.GetMask("TowerBase"));
 
-            if (overlap != null)
-            {
-                Debug.LogWarning("Tower already placed here");
-                return;
-            }
-
+            if (overlap != null) return;
+            
             GameObject tower = Instantiate(towerPrefab, cellCenter, Quaternion.identity);
             EventBus.Publish(new TowerPlacedEvent(tower.transform));
 
+            e.Consume();
             _canPlaceTower = false;
 
         }

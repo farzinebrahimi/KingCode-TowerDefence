@@ -1,9 +1,8 @@
-﻿using System;
-using Core;
+﻿using Core;
+using Core.Interfaces;
 using Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI
 {
@@ -11,11 +10,16 @@ namespace UI
     {
         [SerializeField] 
         private TextMeshProUGUI resourcesText;
+        
+        private ICurrencyManager _currencyManager;
 
-        private void Awake()
+        private void Start()
         {
-            if (CurrencyManager.Instance == null) return;
-            resourcesText.text = CurrencyManager.Instance.GetCurrentMoney().ToString();
+            _currencyManager = CurrencyManager.Instance;
+            Debug.Log($"Money Is: {_currencyManager.CurrentMoney}");
+            if (_currencyManager== null) return;
+            resourcesText.text = _currencyManager.CurrentMoney.ToString();
+            Debug.Log(resourcesText.text);
         }
 
 
@@ -30,7 +34,7 @@ namespace UI
         
         private  void OnResourceHandler(MoneyChangedEvent e)
         {
-            resourcesText.text = e.Money.ToString();
+            resourcesText.text = e.CurrentAmount.ToString();
         }
 
         

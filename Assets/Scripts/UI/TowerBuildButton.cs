@@ -18,7 +18,7 @@ namespace UI
 
         public void OnButtonClick()
         {
-            Debug.Log("Select  Tower");
+            EventBus.Publish(new TowerPlacementStateChangedEvent(true));
             EventBus.Publish(new BeginTowerPlacementEvent());
         }
     }
