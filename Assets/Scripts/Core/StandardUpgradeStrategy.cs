@@ -4,12 +4,12 @@ using Tower;
 
 namespace Core
 {
-    public class StandardUpgradeStrategy : IUpgradeStrategy
+    public class StandardUpgradeStrategy 
     {
-        public void ApplyUpgrade(TowerUpgradeSystem tower, TowerData.TowerLevel level)
-        {
-            tower.towerShooting.SetState(level.damage, level.fireRate);
-            tower.towerTargeting.SetDetectionRadius(level.range);
-        }
+        // public void ApplyUpgrade(TowerUpgradeSystem tower, TowerData.TowerLevel level)
+        // {
+        //     tower.towerShooting.SetState(level._damage, level.fireRate);
+        //     tower.towerTargeting.SetDetectionRadius(level.range);
+        // }
     }
 }

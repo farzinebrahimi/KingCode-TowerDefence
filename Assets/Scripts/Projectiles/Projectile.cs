@@ -8,6 +8,7 @@ namespace Projectiles
     {
         private Rigidbody2D _rb;
         public Action OnReturnedToPool;
+        private float _damage;
 
         private void Awake()
         {
@@ -16,9 +17,10 @@ namespace Projectiles
                 Debug.LogError("Rigidbody2D not found!");
         }
 
-        public void Launch(Vector2 direction, float speed)
+        public void Launch(Vector2 direction, float speed, float damage)
         {
             _rb.linearVelocity = direction * speed;
+            _damage = damage;
             Invoke(nameof(ReturnToPool), 3f);
         }
 
@@ -29,7 +31,7 @@ namespace Projectiles
                 IDamageable dmg = other.GetComponent<IDamageable>();
                 if (dmg != null)
                 {
-                    dmg.TakeDamage(10.0f);
+                    dmg.TakeDamage(_damage);
                 }
                 ReturnToPool();
             }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core;
 using Enemies;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Tower
 {

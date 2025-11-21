@@ -10,8 +10,9 @@ namespace Tower
         private IProjectileFactory _projectileFactory;
         [SerializeField]
         private Transform shootPoint;
-        [SerializeField]
-        private float fireRate;
+        [Header("Current Stats")]
+        [SerializeField] private float damage;
+        [SerializeField] private float fireRate;
         [SerializeField]
         private Transform _currentTarget;
         
@@ -19,7 +20,7 @@ namespace Tower
          [SerializeField]
         private float lastShootTime;
 
-        private float _damage;
+     
         private int _myInstanceID;
 
         private TowerData _towerData;
@@ -60,12 +61,12 @@ namespace Tower
             projectile.transform.position = shootPoint.position;
 
             Vector2 dir = (_currentTarget.position - shootPoint.position).normalized;
-            projectile.Launch(dir, 10f);
+            projectile.Launch(dir, 10f,damage);
         }
 
-        public void SetState(float damage, float newFireRate)
+        public void SetState(float newDamage, float newFireRate)
         {
-            _damage = damage;
+            damage = newDamage;
             fireRate = newFireRate;
         }
         
