@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3cc722d-ef69-4b93-a04d-cff75572e002" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KingCode-TowerDefence/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KingCode-TowerDefence/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/GameMixer.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/GameMixer.mixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Castle/CastleHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Castle/CastleHealth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/EventBus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/EventBus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/CurrencyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/CurrencyManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/TowerPlacementManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/TowerPlacementManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/TowerUpgradeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/TowerUpgradeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/HUDController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/HUDController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
-    </list>
+    <list default="true" id="c3cc722d-ef69-4b93-a04d-cff75572e002" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +118,7 @@
       <workItem from="1763612204756" duration="4287000" />
       <workItem from="1763637051313" duration="10968000" />
       <workItem from="1763732263536" duration="7697000" />
-      <workItem from="1763742402858" duration="15478000" />
+      <workItem from="1763742402858" duration="15756000" />
     </task>
     <servers />
   </component>
